@@ -2,34 +2,57 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginLeft="@dimen/card_margin_horizontal"
+    android:layout_marginRight="@dimen/card_margin_horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:elevation="3dp"
-        app:cardCornerRadius="5dp"
+        android:elevation="5dp"
+        android:layout_marginLeft="@dimen/card_margin_horizontal"
+        android:layout_marginRight="@dimen/card_margin_horizontal"
+        app:cardUseCompatPadding="true"
+        app:cardCornerRadius="0dp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent">
         <android.support.constraint.ConstraintLayout
-            android:layout_margin="5dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
             <ImageView android:id="@+id/headerImage"
+                android:adjustViewBounds="true"
+                android:src="@drawable/valparaiso"
+                android:scaleType="centerCrop"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"/>
             <TextView
+                android:layout_margin="5dp"
                 android:id="@+id/ciudad"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/headerImage"
                 android:text="@string/ciudad"/>
             <TextView
+                android:layout_margin="5dp"
                 android:id="@+id/region"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/ciudad"
                 android:text="@string/region"/>
+
+            <ImageView
+                android:id="@+id/weatherIcon"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:adjustViewBounds="true"
+                android:maxHeight="50dp"
+                android:src="@drawable/weather_cloudy"
+                android:tint="@color/background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/headerImage" />
 
         </android.support.constraint.ConstraintLayout>
 
