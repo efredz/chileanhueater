@@ -1,8 +1,11 @@
 package cl.efredz.chileanhueater.views
 
+import android.app.Activity
+import android.app.Dialog
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
+import android.support.v4.app.DialogFragment
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
@@ -25,13 +28,14 @@ import kotlinx.android.synthetic.main.fragment_add_city.*
  * Use the [AddCityFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class AddCityFragment : Fragment() {
+class AddCityFragment : DialogFragment() {
 
     // TODO: Rename and change types of parameters
     private var mParam1: String? = null
     private var mParam2: String? = null
 
     private var mListener: OnFragmentInteractionListener? = null
+
 
     private val recycler by lazy{
         recyclerAddCity
@@ -70,7 +74,7 @@ class AddCityFragment : Fragment() {
                 .subscribe(
                 {
                     ciudades ->
-                    val adapter = SimpleCityAdapter(ciudades)
+                    val adapter = SimpleCityAdapter(ciudades, this as DialogFragment)
                     recycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
                     recycler.adapter = adapter
                     Log.i("", "")
@@ -110,6 +114,7 @@ class AddCityFragment : Fragment() {
         fun onFragmentInteraction(uri: Uri)
     }
 
+
     companion object {
         // TODO: Rename parameter arguments, choose names that match
         // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -134,7 +139,4 @@ class AddCityFragment : Fragment() {
             return fragment
         }
     }
-
-
-
 }

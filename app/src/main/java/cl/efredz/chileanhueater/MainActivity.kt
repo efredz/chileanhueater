@@ -16,7 +16,7 @@ import cl.efredz.chileanhueater.views.AddCityFragment
 import kotlinx.android.synthetic.main.activity_resumen_ciudades.*
 import kotlinx.android.synthetic.main.content_resumen_ciudades.*
 
-class ResumenCiudades : AppCompatActivity(), AddCityFragment.OnFragmentInteractionListener{
+class MainActivity : AppCompatActivity(), AddCityFragment.OnFragmentInteractionListener{
 
     private val recycler by lazy{
         recyclerResumen
@@ -30,14 +30,8 @@ class ResumenCiudades : AppCompatActivity(), AddCityFragment.OnFragmentInteracti
         fab.setOnClickListener { view ->
 //            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                    .setAction("Action", null).show()
-            val fragment = AddCityFragment();
-            supportFragmentManager.beginTransaction()
-                    .replace(
-                            R.id.fragmentFrame,
-                            fragment,
-                            fragment.javaClass.simpleName)
-                    .addToBackStack(null)
-                    .commit()
+            val fragment = AddCityFragment()
+            fragment.show(supportFragmentManager, "Hola")
         }
         bindRecyclerView()
     }
@@ -66,4 +60,5 @@ class ResumenCiudades : AppCompatActivity(), AddCityFragment.OnFragmentInteracti
         recycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);// GridLayoutManager(this , 2)
         recycler.adapter = adapter
     }
+
 }

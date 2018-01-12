@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="cl.efredz.chileanhueater.ResumenCiudades"
+    tools:context="cl.efredz.chileanhueater.MainActivity"
     tools:showIn="@layout/activity_resumen_ciudades">
 
     <android.support.v7.widget.RecyclerView
