@@ -6,15 +6,17 @@ import android.view.ViewGroup
 import cl.efredz.chileanhueater.R
 import cl.efredz.chileanhueater.models.City
 import com.afollestad.materialdialogs.MaterialDialog
+import io.reactivex.Observable
+import io.reactivex.subjects.PublishSubject
 import kotlinx.android.synthetic.main.item_resumen.view.*
 
 /**
  * Created by edgardo on 03-01-18.
  */
-class CityResumeAdapter (val cityList: List<City>) : RecyclerView.Adapter<CityResumeAdapter.ViewHolder>() {
+class CityResumeAdapter (private val cityList: List<City>) : RecyclerView.Adapter<CityResumeAdapter.ViewHolder>() {
+
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): CityResumeAdapter.ViewHolder? {
-//        val view = LayoutInflater.from(parent!!.context).inflate(R.layout.item_resumen, parent, false)
         val view = parent?.inflate(R.layout.item_resumen)
         return ViewHolder(view!!)
     }
@@ -42,7 +44,6 @@ class CityResumeAdapter (val cityList: List<City>) : RecyclerView.Adapter<CityRe
                 }.show()
             }
         }
-
     }
 
 }

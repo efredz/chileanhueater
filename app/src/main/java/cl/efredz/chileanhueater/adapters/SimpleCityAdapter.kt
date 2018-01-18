@@ -2,21 +2,22 @@ package cl.efredz.chileanhueater.adapters
 
 import android.support.v4.app.DialogFragment
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import cl.efredz.chileanhueater.R
-import cl.efredz.chileanhueater.models.City
+import cl.efredz.chileanhueater.adapters.SimpleCityAdapter.ViewHolder
 import cl.efredz.chileanhueater.models.dtos.CityDto
-import cl.efredz.chileanhueater.views.AddCityFragment
-import com.afollestad.materialdialogs.MaterialDialog
-import kotlinx.android.synthetic.main.item_resumen.view.*
+import io.reactivex.Observable
+import io.reactivex.subjects.PublishSubject
 import kotlinx.android.synthetic.main.item_simple_city.view.*
 
 /**
  * Created by edgardo on 08-01-18.
  */
-class SimpleCityAdapter(val cityList: List<CityDto>) : RecyclerView.Adapter<SimpleCityAdapter.ViewHolder>(){
+class SimpleCityAdapter(val cityList: List<CityDto>) : RecyclerView.Adapter<ViewHolder>(){
+
+    private val clickSubject = PublishSubject.create<CityDto>()
     var callingFragment: DialogFragment? = null
 
     constructor(cityList: List<CityDto>, cityFragment: DialogFragment) : this(cityList){
@@ -24,15 +25,12 @@ class SimpleCityAdapter(val cityList: List<CityDto>) : RecyclerView.Adapter<Simp
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
-//        val view = LayoutInflater.from(parent!!.context).inflate(R.layout.item_simple_city, parent, false)
         val view = parent!!.inflate(R.layout.item_simple_city)
-        view.setOnClickListener{ view ->
+        view.setOnClickListener{ _ ->
             callingFragment?.dismiss()
         }
-        return SimpleCityAdapter.ViewHolder(view)
+        return ViewHolder(view)
     }
-
-
 
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
         holder?.bindItems(cityList[position])
@@ -43,7 +41,15 @@ class SimpleCityAdapter(val cityList: List<CityDto>) : RecyclerView.Adapter<Simp
         return cityList.size
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    val clickEvent: Observable<CityDto> = clickSubject
+
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        init{
+            itemView.setOnClickListener{
+                clickSubject.onNext(cityList[layoutPosition])
+            }
+        }
+
         fun bindItems(city: CityDto){
             itemView.cityName.text = city.nombre;
         }

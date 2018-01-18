@@ -13,7 +13,6 @@ class CityRepository(private val restApi: RestApi = RestApi()){
     fun getAllCities(): Observable<List<CityDto>>{
         return Observable.create{
             subscriber ->
-            val listado = mutableListOf<List<CityDto>>()
             val callResponse = restApi.getAllCities()
             val response = callResponse.execute()
             if(response.isSuccessful){

@@ -11,12 +11,17 @@ import android.view.MenuItem
 import cl.efredz.chileanhueater.adapters.CityResumeAdapter
 import cl.efredz.chileanhueater.models.City
 import cl.efredz.chileanhueater.models.Region
+import cl.efredz.chileanhueater.models.dtos.CityDto
 import cl.efredz.chileanhueater.views.AddCityFragment
 
 import kotlinx.android.synthetic.main.activity_resumen_ciudades.*
 import kotlinx.android.synthetic.main.content_resumen_ciudades.*
 
-class MainActivity : AppCompatActivity(), AddCityFragment.OnFragmentInteractionListener{
+class MainActivity : AppCompatActivity(), AddCityFragment.AddCityInteractionListener{
+
+    override fun onFragmentInteraction(city: CityDto) {
+        var hola = "";
+    }
 
     private val recycler by lazy{
         recyclerResumen
@@ -27,9 +32,7 @@ class MainActivity : AppCompatActivity(), AddCityFragment.OnFragmentInteractionL
         setContentView(R.layout.activity_resumen_ciudades)
         setSupportActionBar(toolbar)
 
-        fab.setOnClickListener { view ->
-//            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                    .setAction("Action", null).show()
+        fab.setOnClickListener { _ ->
             val fragment = AddCityFragment()
             fragment.show(supportFragmentManager, "Hola")
         }
@@ -48,17 +51,12 @@ class MainActivity : AppCompatActivity(), AddCityFragment.OnFragmentInteractionL
         }
     }
 
-    override fun onFragmentInteraction(uri: Uri) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 
     fun bindRecyclerView(){
         val city = City("Valparaíso", Region("Región de Valparaíso"), R.drawable.valparaiso)
-        val city2 = City("Santiago", Region("Región Metropolitana"), R.drawable.valparaiso)
-        val cities = listOf<City>(city, city2)
+        val cities = listOf<City>(city)
         val adapter = CityResumeAdapter(cities)
         recycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);// GridLayoutManager(this , 2)
         recycler.adapter = adapter
     }
-
 }
