@@ -45,7 +45,6 @@ class AddCityFragment : BaseRxFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                                      savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_add_city, container, false)
     }
 
@@ -71,7 +70,6 @@ class AddCityFragment : BaseRxFragment() {
                                             this.dismiss()
                                         })
                         recycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-//                        recycler.setHasFixedSize(true)
                         recycler.adapter = adapter
                         Log.i("", "")
                     },

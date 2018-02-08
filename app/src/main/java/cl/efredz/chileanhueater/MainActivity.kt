@@ -1,9 +1,6 @@
 package cl.efredz.chileanhueater
 
-import android.net.Uri
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
@@ -20,7 +17,7 @@ import kotlinx.android.synthetic.main.content_resumen_ciudades.*
 class MainActivity : AppCompatActivity(), AddCityFragment.AddCityInteractionListener{
 
     override fun onFragmentInteraction(city: CityDto) {
-        var hola = "";
+        var hola = ""
     }
 
     private val recycler by lazy{
@@ -51,12 +48,11 @@ class MainActivity : AppCompatActivity(), AddCityFragment.AddCityInteractionList
         }
     }
 
-
     fun bindRecyclerView(){
         val city = City("Valparaíso", Region("Región de Valparaíso"), R.drawable.valparaiso)
-        val cities = listOf<City>(city)
+        val cities = listOf(city)
         val adapter = CityResumeAdapter(cities)
-        recycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);// GridLayoutManager(this , 2)
+        recycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         recycler.adapter = adapter
     }
 }

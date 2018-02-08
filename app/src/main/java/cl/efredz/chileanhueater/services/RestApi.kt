@@ -10,7 +10,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
  */
 
 class RestApi {
-    private val redditApi: MeteoChileApi
+    private val meteoApi: MeteoChileApi
 
     init {
         val retrofit = Retrofit.Builder()
@@ -18,10 +18,10 @@ class RestApi {
                 .addConverterFactory(MoshiConverterFactory.create())
                 .build()
 
-        redditApi = retrofit.create(MeteoChileApi::class.java)
+        meteoApi = retrofit.create(MeteoChileApi::class.java)
     }
 
     fun getAllCities() : Call<List<CityDto>>{
-        return redditApi.getAll()
+        return meteoApi.getAll()
     }
 }
